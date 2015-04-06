@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * 微缩图路径获取工具
+ * @param $image_uri DRUPAL IMAGE URI
+ * @param STRING $style DRUPAL IMAGE STYLE 
+ * @return string image_style_link 
+ */
+ function basis_tools_Get_image_style_link($image_uri=NULL,$style=NULL){
+    //参数判断
+    if (!empty($image_uri)&&!empty($style)) {
+        //图片样式是否存在
+        if(!image_style_load($style)){
+            return '';
+        }
+        $derivative_uri = image_style_path($style, $image_uri);
+        $success = file_exists($derivative_uri) || image_style_create_derivative(image_style_load($style), $image_uri, $derivative_uri);
+        $temp_image_url = file_create_url($derivative_uri);
+        return $temp_image_url;
+    }else{
+        return '';
+    }
+}

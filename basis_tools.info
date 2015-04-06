@@ -1,0 +1,8 @@
+name = Drupal Tools
+description = 相关工具
+core = 7.x
+
+dependencies[] = system (>=7.33)
+
+version = "7.x-1.0"
+package = David_Drupal_Tools
